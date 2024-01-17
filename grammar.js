@@ -55,7 +55,8 @@ module.exports = grammar({
     extern: $ => seq('extern', $.string, '{', repeat($.primitive), '}'),
 
     // cells
-    cells: $ => seq('cells', '{', repeat($.cell_assignment), '}'),
+    cells: $ => seq('cells', '{', optional($.cells_inner), '}'),
+    cells_inner: $ => repeat1($.cell_assignment),
     cell_assignment: $ => seq(
       optional($.at_attribute), optional('ref'),
       $.ident, '=', $.instantiation, optional(';')
@@ -64,7 +65,8 @@ module.exports = grammar({
     arg_list: $ => seq('(', repeat(seq($.number, optional(','))), ')'),
 
     // wires
-    wires: $ => seq('wires', '{', repeat(choice($.group, $.wire_assignment)), '}'),
+    wires: $ => seq('wires', '{', optional($.wires_inner), '}'),
+    wires_inner: $ => repeat1(choice($.group, $.wire_assignment)),
     group: $ => seq(
       optional('comb'), 'group', $.ident, optional($.attributes),
       '{',
@@ -98,7 +100,8 @@ module.exports = grammar({
     wire_assignment: $ => seq(optional($.at_attribute), $.lhs, '=', choice($.switch, $.expr), ';'),
 
     // control
-    control: $ => seq('control', choice(seq('{', '}'), $.block)),
+    control: $ => seq('control', '{', $.control_inner, '}'),
+    control_inner: $ => $.stmt,
     enable: $ => seq(repeat($.at_attribute), optional($.ident), ';'),
     invoke_ref_arg: $ => seq($.ident, '=', $.ident),
     invoke_ref_args: $ => seq(

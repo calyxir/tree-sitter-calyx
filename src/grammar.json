@@ -449,17 +449,29 @@
           "value": "{"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "cell_assignment"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "cells_inner"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
           "value": "}"
         }
       ]
+    },
+    "cells_inner": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "cell_assignment"
+      }
     },
     "cell_assignment": {
       "type": "SEQ",
@@ -576,26 +588,38 @@
           "value": "{"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "group"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "wire_assignment"
-              }
-            ]
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "wires_inner"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
           "value": "}"
         }
       ]
+    },
+    "wires_inner": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "group"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "wire_assignment"
+          }
+        ]
+      }
     },
     "group": {
       "type": "SEQ",
@@ -1018,28 +1042,22 @@
           "value": "control"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "{"
-                },
-                {
-                  "type": "STRING",
-                  "value": "}"
-                }
-              ]
-            },
-            {
-              "type": "SYMBOL",
-              "name": "block"
-            }
-          ]
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "control_inner"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
+    },
+    "control_inner": {
+      "type": "SYMBOL",
+      "name": "stmt"
     },
     "enable": {
       "type": "SEQ",
