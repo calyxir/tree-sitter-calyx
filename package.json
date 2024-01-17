@@ -1,0 +1,29 @@
+{
+  "name": "tree-sitter-calyx",
+  "version": "1.0.0",
+  "description": "Tree Sitter Parser for Calyx",
+  "main": "bindings/node",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "install": "node-gyp rebuild"
+  },
+  "author": "Sammy Thomas",
+  "license": "ISC",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.8"
+  },
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "tree-sitter": [
+    {
+      "file-types": [
+        "futil"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ],
+  "gypfile": true
+}
