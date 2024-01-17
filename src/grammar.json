@@ -891,6 +891,10 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "expr"
+        },
+        {
           "type": "SEQ",
           "members": [
             {
@@ -992,11 +996,11 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "expr"
+              "name": "switch"
             },
             {
               "type": "SYMBOL",
-              "name": "switch"
+              "name": "expr"
             }
           ]
         },

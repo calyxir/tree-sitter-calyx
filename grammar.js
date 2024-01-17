@@ -89,12 +89,13 @@ module.exports = grammar({
       prec.left(1, seq($.expr, "<", $.expr)),
     ),
     term: $ => choice(
+      $.expr,
       seq('!', $.expr),
       prec.left(2, seq($.expr, '|', $.expr)),
       prec.left(1, seq($.expr, '&', $.expr))
     ),
     switch: $ => seq($.term, '?', $.base_expr),
-    wire_assignment: $ => seq(optional($.at_attribute), $.lhs, '=', choice($.expr, $.switch), ';'),
+    wire_assignment: $ => seq(optional($.at_attribute), $.lhs, '=', choice($.switch, $.expr), ';'),
 
     // control
     control: $ => seq('control', choice(seq('{', '}'), $.block)),
