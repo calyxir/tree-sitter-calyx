@@ -31,7 +31,7 @@ module.exports = grammar({
       $.signature, '{',
       $.cells,
       $.wires,
-      $.control,
+      optional($.control),
       '}'
     ),
     comb_or_static: $ => choice(

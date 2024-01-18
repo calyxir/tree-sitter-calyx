@@ -184,8 +184,16 @@
           "name": "wires"
         },
         {
-          "type": "SYMBOL",
-          "name": "control"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "control"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
