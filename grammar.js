@@ -29,8 +29,8 @@ module.exports = grammar({
       'component',
       $.ident, optional($.attributes),
       $.signature, '{',
-      $.cells,
-      $.wires,
+      optional($.cells),
+      optional($.wires),
       optional($.control),
       '}'
     ),
