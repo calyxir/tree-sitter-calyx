@@ -717,10 +717,6 @@
           "named": true
         },
         {
-          "type": "block_string",
-          "named": true
-        },
-        {
           "type": "comb_or_static",
           "named": true
         },
@@ -733,7 +729,26 @@
           "named": true
         },
         {
+          "type": "primitive_blob",
+          "named": true
+        },
+        {
           "type": "signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "primitive_blob",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "any_line",
           "named": true
         }
       ]
@@ -1096,12 +1111,12 @@
     "named": false
   },
   {
-    "type": "b",
-    "named": false
+    "type": "any_line",
+    "named": true
   },
   {
-    "type": "block_string",
-    "named": true
+    "type": "b",
+    "named": false
   },
   {
     "type": "cells",

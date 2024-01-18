@@ -45,11 +45,16 @@ module.exports = grammar({
 
     // primitives
     params: $ => seq(repeat(seq($.ident, ',')), $.ident),
-    block_string: $ => /\{(.|\n)*\}/,
+    any_line: $ => /([^\}\n])*\n/,
+    primitive_blob: $ => seq(
+      '{',
+      repeat($.any_line),
+      '}'
+    ),
     primitive: $ => seq(
       optional($.comb_or_static), 'primitive', $.ident, optional($.attributes),
       optional($.params), $.signature,
-      optional($.block_string),
+      optional($.primitive_blob),
       ';'
     ),
     extern: $ => seq('extern', $.string, '{', repeat($.primitive), '}'),
