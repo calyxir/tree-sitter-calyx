@@ -110,13 +110,17 @@ module.exports = grammar({
       ']'
     ),
     invoke_arg: $ => seq($.ident, '=', choice($.port, $.literal)),
-    invoke_args: $ => seq(repeat(seq($.invoke_arg, ',')), $.invoke_arg),
+    invoke_args: $ => seq(
+      '(',
+      optional(seq(repeat(seq($.invoke_arg, ',')), $.invoke_arg)),
+      ')'
+    ),
     invoke: $ => seq(
       repeat($.at_attribute), optional($.static_annotation), 'invoke',
       $.ident,
       optional($.invoke_ref_args),
-      '(', optional($.invoke_args), ')',
-      '(', optional($.invoke_args), ')',
+      $.invoke_args,
+      $.invoke_args,
       optional(seq('with', $.ident)),
       ';'
     ),
