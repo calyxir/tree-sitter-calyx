@@ -44,7 +44,7 @@ module.exports = grammar({
     io_port_list: $ => seq('(', repeat(seq($.io_port, ',')), optional($.io_port), ')'),
 
     // primitives
-    params: $ => seq(repeat(seq($.ident, ',')), $.ident),
+    params: $ => seq('[', seq(repeat(seq($.ident, ',')), $.ident), ']'),
     any_line: $ => /([^\}\n])*\n/,
     primitive_blob: $ => seq(
       '{',

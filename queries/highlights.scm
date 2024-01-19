@@ -20,3 +20,5 @@
 (literal) @constant.builtin
 (comment) @comment
 (primitive_blob) @string
+
+(params (ident) @function)
