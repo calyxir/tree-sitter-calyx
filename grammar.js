@@ -40,7 +40,7 @@ module.exports = grammar({
       seq('comb', $.static_annotation),
       seq($.static_annotation, 'comb')
     ),
-    io_port: $ => seq(optional($.at_attribute), $.ident, ':', choice($.number, $.ident)),
+    io_port: $ => seq(repeat($.at_attribute), $.ident, ':', choice($.number, $.ident)),
     io_port_list: $ => seq('(', repeat(seq($.io_port, ',')), optional($.io_port), ')'),
 
     // primitives
